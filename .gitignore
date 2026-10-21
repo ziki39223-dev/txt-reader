@@ -1,0 +1,19 @@
+# 书库里的书与个人阅读记录：版权内容和个人数据都不入库
+书库/**/*.txt
+书库/**/*.txtbar.json
+*.txtbar.json
+
+# 运行时生成
+*.log
+*.tmp
+*.bak
+status.json
+selftest.log
+
+# 系统与编辑器
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vs/
+.vscode/
+.idea/
