@@ -319,6 +319,9 @@ namespace TxtBar
             try { text = Enc.GetString(raw); }
             catch (Exception ex) { Enc = new UTF8Encoding(false); EncName = "UTF-8"; text = Enc.GetString(raw); Error = "解码异常：" + ex.Message; }
 
+            // 带 BOM 的文件 GetString 不会自动剥掉 U+FEFF，会留在首行影响显示
+            if (text.Length > 0 && text[0] == '\uFEFF') text = text.Substring(1);
+
             SetText(text);
         }
 

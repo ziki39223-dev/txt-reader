@@ -494,7 +494,10 @@ namespace TxtBar
         {
             byte[] raw = File.ReadAllBytes(path);
             Encoding e = Book.DetectEncoding(raw, out encName);
-            return e.GetString(raw);
+            string text = e.GetString(raw);
+            // 剥掉 BOM 残留的 U+FEFF，否则首章标题以 \uFEFF 开头，章节正则匹配不到会丢首章
+            if (text.Length > 0 && text[0] == '\uFEFF') text = text.Substring(1);
+            return text;
         }
 
         public static List<string> ToLines(string text)
